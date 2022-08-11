@@ -1,1 +1,22 @@
-print("lol")
+--Keep this
+local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stebulous/solaris-ui-lib/main/source.lua"))()
+local win = SolarisLib:New({
+  Name = "Universal Games/FE ScriptHub",
+  FolderToSave = "UGFE"
+})
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+--Tabs
+local UFE = win:Tab("Universal FE ScriptHub")
+
+
+--Sections
+local SectionUFE = UFE:Section("Script:")
+
+
+--Buttons
+SectionUFE:Button("Univesal FE ScriptHub", function()
+    SolarisLib:Notification("Executed!", "Wait to load.")
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
+end)

@@ -4,15 +4,19 @@ local win = SolarisLib:New({
   Name = "Universal Games/FE ScriptHub",
   FolderToSave = "UGFE"
 })
-
 -----------------------------------------------------------------------------------------------------------------------------
 
 --Tabs
-local UFE = win:Tab("Universal FE ScriptHub")
+local UFE = win:Tab("Universal FE")
+local Games = win:Tab("Games")
+local CreditsConfig = win:Tab("Credits / Config")
 
 
 --Sections
 local SectionUFE = UFE:Section("Script:")
+local SectionTeleport = Games:Section("Choose Supported Game to Teleport!")
+local SectionGames = Games:Section("Total of Supported Games: 0")
+local SectionCreditsConfig = CreditsConfig:Section("Credits/Config")
 
 
 --Buttons
@@ -20,3 +24,22 @@ SectionUFE:Button("Univesal FE ScriptHub", function()
     SolarisLib:Notification("Executed!", "Wait to load.")
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
 end)
+
+
+--Dropdowns
+_G.gamestoteleport = "Select Game to Teleport"
+local GamesDropdown = SectionTeleport:Dropdown("Select Game to Teleport", {"Just Grass","Natural Disaster"},"","Dropdown", function(Value)
+    _G.gamestoteleport = Value
+end)
+
+SectionTeleport:Button("Teleport To Selected Game", function()
+    if _G.gamestoteleport == "Select Game to Teleport" then
+        SolarisLib:Notification("Warning!", "Select game first to teleport!")
+    elseif _G.gamestoteleport == "Just Grass" then
+        game:GetService("TeleportService"):Teleport(5100950559, player)
+    elseif _G.gamestoteleport == "Natural Disaster" then
+        game:GetService("TeleportService"):Teleport(189707, player)
+    end
+end)
+
+

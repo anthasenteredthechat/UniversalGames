@@ -4,17 +4,25 @@ local Window = Library.CreateLib("Universal Games/FE ScriptHub", "DarkTheme")
 -----------------------------------------------------------------------------------------------------------------------------
 --Tabs
 local UFE = Window:NewTab("Universal FE")
-local Games = Window:NewTab("Games")
-local CreditsConfig = Window:NewTab("Credits / Config")
+local Games = Window:NewTab("Games to Teleport")
 --Sections
-local SectionUFE = UFE:NewSection("Script: ")
-local SectionGames = Games:NewSection("Total of Supported Games: 2")
-local SectionScripts = Games:NewSection("Total of Scripts: 2")
+local SectionUFE = UFE:NewSection("Script:")
+local SectionRecommended = Games:NewSection("Teleport to a Game Non Restricted Teleport")
 local SectionTeleport = Games:NewSection("Choose Supported Game to Teleport!")
-local SectionCreditsConfig = CreditsConfig:NewSection("Credits/Config")
 --Buttons
 SectionUFE:NewButton("Univesal FE ScriptHub", "Main Hub", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
+end)
+SectionUFE:NewLabel("Enjoy It!")
+SectionRecommended:NewLabel("It Copies Game Link Automatically to Your")
+SectionRecommended:NewLabel("Clipboard If You Need to Join Manually")
+SectionRecommended:NewButton("Just Grass", "", function()
+    game:GetService("TeleportService"):Teleport(5100950559, player)
+    setclipboard("https://www.roblox.com/games/5100950559/Just-Grass")
+end)
+SectionRecommended:NewButton("a literal baseplate", "", function()
+    game:GetService("TeleportService"):Teleport(4483381587, player)
+    setclipboard("https://www.roblox.com/games/4483381587/a-literal-baseplate")
 end)
 --Dropdowns
 SectionTeleport:NewDropdown("Select Game to Teleport", "", {"Blox Fruits", "Da Hood"}, function(Value)
@@ -22,7 +30,6 @@ SectionTeleport:NewDropdown("Select Game to Teleport", "", {"Blox Fruits", "Da H
 end)
 SectionTeleport:NewButton("Teleport To Selected Game", "", function()
     if _G.gamestoteleport == "Select Game to Teleport" then
-        SolarisLib:Notification("Warning!", "Select game first to teleport!")
     elseif _G.gamestoteleport == "Blox Fruits" then
         game:GetService("TeleportService"):Teleport(2753915549, player)
     elseif _G.gamestoteleport == "Da Hood" then
@@ -30,38 +37,94 @@ SectionTeleport:NewButton("Teleport To Selected Game", "", function()
     end
 end)
 -- Supported Games
---Blox Fruits
-if game.PlaceId == 2753915549 then
-    local SectionSupportedGame = Games:NewSection("Detected Supported Game!")
+if game.PlaceId == 2753915549 then --Blox Fruits
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
     SectionSupportedGame:NewButton("HoHo Hub", "", function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
     end)
-end
--- Da Hood
-if game.PlaceId == 2788229376 then
-    local SectionSupportedGame = Games:NewSection("Detected Supported Game!")
+elseif game.PlaceId == 2788229376 then --Da Hood
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
     SectionSupportedGame:NewButton("Arctic", "", function()
         loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/PolarWasHere/Arctic/main/Arctic"))()
     end)
-end
--- Pet Simulator X 
-if game.PlaceId == 6284583030 then
-    local SectionSupportedGame = Games:NewSection("Detected Supported Game!")
+elseif game.PlaceId == 6284583030 then --Pet Simulator X
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 1240123653 then -- Zombie Attack
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 198116126 then --Tradelands
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 286090429 then --Arsenal
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 3851622790 then --Break In
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 4587545091 then --Viet Nam Piece
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 292439477 then --Phantom Forces
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("Strawhook Hub", "", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidMasterX/strawhook/main/script.lua", true))()
+    end)
+    SectionSupportedGame:NewButton("Unlock All", "", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidMasterX/Releases/main/PF_UnlockAll.lua"))();
+    end)
+elseif game.PlaceId == 1962086868 then --Tower of Hell
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 4003872968 then --Giant Survival
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 4954096313 then --Field Trip Z
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
+    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+    end)
+elseif game.PlaceId == 1224212277 then --Mad City
+    local DetectedGameTab = Window:NewTab("Detected Game")
+    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
     SectionSupportedGame:NewButton("HoHo Hub", "", function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
     end)
 end
--- Zombie Attack
-if game.PlaceId == 1240123653 then
-    local SectionSupportedGame = Games:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
-end
--- Tradelands
-if game.PlaceId == 198116126 then
-    local SectionSupportedGame = Games:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
-end
+--Configs
+local CreditsConfig = Window:NewTab("Credits / Config")
+local SectionCreditsConfig = CreditsConfig:NewSection("Credits/Config")
+SectionCreditsConfig:NewLabel("Owner: Dvrknvss#0688")
+SectionCreditsConfig:NewLabel("Devloper: Lay.#9994")
+SectionCreditsConfig:NewLabel("Devloper: antgp#9689")
+SectionCreditsConfig:NewButton("Discord Link", "https://discord.com/invite/McWdrB4wSs", function()
+    setclipboard("https://discord.com/invite/McWdrB4wSs")
+end)

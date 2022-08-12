@@ -9,7 +9,7 @@ local UniversalHubsGuis = Window:NewTab("Universal Hub/GUIs")
 --Sections
 local SectionUFE = UFE:NewSection("Script:")
 local SectionTeleport = Games:NewSection("Choose Supported Game to Teleport!")
-local SectionUniHubGui = UniversalHubsGuis:NewSection("Scripts you can you on any game!")
+local SectionUniHubGui = UniversalHubsGuis:NewSection("Scripts you can use on any game!")
 --Buttons
 SectionUFE:NewButton("Univesal FE ScriptHub", "Main Hub", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()

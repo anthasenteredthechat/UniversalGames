@@ -1,0 +1,44 @@
+--Keep this
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Universal Games/FE ScriptHub", "DarkTheme")
+-----------------------------------------------------------------------------------------------------------------------------
+
+--Tabs
+local UFE = Window:NewTab("Universal FE")
+local Games = Window:NewTab("Games")
+local CreditsConfig = Window:NewTab("Credits / Config")
+
+
+--Sections
+local SectionUFE = UFE:NewSection("Script:")
+local SectionTeleport = Games:NewSection("Choose Supported Game to Teleport!")
+local SectionGames = Games:NewSection("Total of Supported Games: 0")
+local SectionCreditsConfig = CreditsConfig:NewSection("Credits/Config")
+
+
+--Buttons
+SectionUFE:NewButton("Univesal FE ScriptHub", "Main Hub", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
+end)
+
+
+--Dropdowns
+SectionTeleport:NewDropdown("Select Game to Teleport", "", {"Just Grass", "Natural Disaster"}, function(Value)
+    _G.gamestoteleport = Value
+end)
+
+SectionTeleport:NewButton("Teleport To Selected Game", "", function()
+    if _G.gamestoteleport == "Select Game to Teleport" then
+        SolarisLib:Notification("Warning!", "Select game first to teleport!")
+    elseif _G.gamestoteleport == "Just Grass" then
+        game:GetService("TeleportService"):Teleport(5100950559, player)
+    elseif _G.gamestoteleport == "Natural Disaster" then
+        game:GetService("TeleportService"):Teleport(189707, player)
+    end
+end)
+
+
+
+
+
+

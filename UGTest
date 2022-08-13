@@ -36,7 +36,7 @@ SectionUniHubGui:AddButton({Name = "Owl Hub", Callback = function()
 end})
 --Dropdowns
 _G.gamestoteleport = "Select game to teleport"
-SectionTeleport:AddDropdown({Name = "Select Game Here", Default = "Select Game to Teleport", Options = {"Blox Fruits", "Da Hood", "Pet Simulator X", "Zombie Attack", "Tradelands", "Arsenal", "Break In", "Viet Nam Piece", "Phantom Forces", "Tower of Hell", "Giant Survival", "Field Trip Z", "Mad City", "Brookhaven", "Prison Life", "Prison Life", "The Rake Reamastered", "Lucky Block Battlegrounds", "Anime Dimensions", "Anime Fighters"}, Callback = function(Value)
+SectionTeleport:AddDropdown({Name = "Select Game Here", Default = "Select Game to Teleport", Options = {"Blox Fruits", "Da Hood", "Pet Simulator X", "Zombie Attack", "Tradelands", "Arsenal", "Break In", "Viet Nam Piece", "Phantom Forces", "Tower of Hell", "Giant Survival", "Field Trip Z", "Mad City", "Brookhaven", "Prison Life", "The Rake Reamastered", "Lucky Block Battlegrounds", "Anime Dimensions", "Anime Fighters"}, Callback = function(Value)
     _G.gamestoteleport = Value
 end})
 SectionTeleport:AddButton({Name = "Teleport To Selected Game", Callback = function()

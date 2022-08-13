@@ -3,15 +3,15 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Universal Games - ScriptHub / Version 1.0.3", HidePremium = true, IntroText = "Universal Games ScriptHub", IntroIcon = "rbxassetid://6031094686", Icon = "rbxassetid://6031094686", SaveConfig = true, ConfigFolder = "Games-Hub Config"})
 -----------------------------------------------------------------------------------------------------------------------------
 --Tabs
-local UFE = Window:MakeTab({Name = "Universal FE", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local Games = Window:MakeTab({Name = "Games Teleport", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local UniversalHubsGuis = Window:MakeTab({Name = "Universal", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+local UFE = Window:MakeTab({Name = "Universal FE", Icon = "rbxassetid://6031094686", PremiumOnly = false})
+local Games = Window:MakeTab({Name = "Games Teleport", Icon = "rbxassetid://6034227061", PremiumOnly = false})
+local UniversalHubsGuis = Window:MakeTab({Name = "Universal", Icon = "rbxassetid://6031734878", PremiumOnly = false})
 --Sections
 local SectionUFE = UFE:AddSection({Name = "Script:"})
 local SectionTeleport = Games:AddSection({Name = "Choose Supported Game to Teleport!"})
 local SectionUniHubGui = UniversalHubsGuis:AddSection({Name = "All Scripts Here You Can You on Any Game!"})
 --Configs and Credits
-local CreditsConfig = Window:MakeTab({Name = "Config/Credits", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+local CreditsConfig = Window:MakeTab({Name = "Credits", Icon = "rbxassetid://6034287513", PremiumOnly = false})
 local SectionCreditsConfig = CreditsConfig:AddSection({Name = "Cool People:"})
 SectionCreditsConfig:AddLabel("Owner: Dvrknvss#0688")
 SectionCreditsConfig:AddLabel("Devloper: Lay.#9994")
@@ -36,7 +36,13 @@ SectionUniHubGui:AddButton({Name = "Owl Hub", Callback = function()
 end})
 --Dropdowns
 _G.gamestoteleport = "Select game to teleport"
-SectionTeleport:AddDropdown({Name = "Select Game Here", Default = "Select Game to Teleport", Options = {"Blox Fruits", "Da Hood", "Pet Simulator X", "Zombie Attack", "Tradelands", "Arsenal", "Break In", "Viet Nam Piece", "Phantom Forces", "Tower of Hell", "Giant Survival", "Field Trip Z", "Mad City", "Brookhaven", "Prison Life", "Prison Life", "The Rake Reamastered", "Lucky Block Battlegrounds", "Anime Dimensions", "Anime Fighters"}, Callback = function(Value)
+SectionTeleport:AddDropdown({Name = "Select Game Here", Default = "Select Game to Teleport", Options = {"A Bizarre Day","A Universal Time","Animal Sim",
+"Anime Dimensions","Anime Fighters","Arsenal","Assasin","Attack On Titan: Downfall","Bee Swarm Simulator","Blox Fruits","Blox Hunt","Boku No Roblox",
+"Break In","Brookhaven","Car Crushers 2","Counter Blox","Da Hood","Destruction Simulator","Dig It","Dragon Ball Rage","Dungeon Quest","Field Trip Z",
+"Fishing Simulator","Flee The Facility","Flood Escape 2","Fortress Tycoon","Giant Survival","Ice Breaker","Jailbreak","KAT","Legends of Speed","Lift Legends","Lifting Simulator",
+"Lucky Block Battlegrounds","Lumber Tycoon 2","Mad City","Milkshake Legends","One Piece Prime","Online Business Sim","Pet Simulator X","Phantom Forces","PISTOL 1V1","Prison Life",
+"Punching Sim","Redwood Prison ","Ro Ghoul","Rumble Quest","Sharkbite","Shinobi Life 2","Skywars","Slime Tycoon","SuperPower Training Sim","Tapping Mania",
+"The Dropper","The Rake Reamastered","Tower of Hell","Tradelands","Treasure Quest","Viet Nam Piece","World Of Magic","Zombie Attack","Zombie Defense","Zombie Rush"}, Callback = function(Value)
     _G.gamestoteleport = Value
 end})
 SectionTeleport:AddButton({Name = "Teleport To Selected Game", Callback = function()
@@ -81,7 +87,102 @@ SectionTeleport:AddButton({Name = "Teleport To Selected Game", Callback = functi
         game:GetService("TeleportService"):Teleport(6938803436, player)
     elseif _G.gamestoteleport == "Anime Fighters" then
         game:GetService("TeleportService"):Teleport(6299805723, player)
+    elseif _G.gamestoteleport == "Car Crushers 2" then
+        game:GetService("TeleportService"):Teleport(654732683, player)
+    elseif _G.gamestoteleport == "Legends of Speed" then
+        game:GetService("TeleportService"):Teleport(3101667897, player)
+    elseif _G.gamestoteleport == "KAT" then
+        game:GetService("TeleportService"):Teleport(621129760, player)
+    elseif _G.gamestoteleport == "SuperPower Training Sim" then
+        game:GetService("TeleportService"):Teleport(2202352383, player)
+    elseif _G.gamestoteleport == "Blox Hunt" then
+        game:GetService("TeleportService"):Teleport(70005410, player)
+    elseif _G.gamestoteleport == "Flee The Facility" then
+        game:GetService("TeleportService"):Teleport(893973440, player)
+    elseif _G.gamestoteleport == "IceBreaker" then
+        game:GetService("TeleportService"):Teleport(139613645, player)
+    elseif _G.gamestoteleport == "The Dropper" then
+        game:GetService("TeleportService"):Teleport(166731267, player)
+    elseif _G.gamestoteleport == "Dungeon Quest" then
+        game:GetService("TeleportService"):Teleport(2414851778, player)
+    elseif _G.gamestoteleport == "SharkBite" then
+        game:GetService("TeleportService"):Teleport(734159876, player)
+    elseif _G.gamestoteleport == "Zombie Rush" then
+        game:GetService("TeleportService"):Teleport(137885680, player)
+    elseif _G.gamestoteleport == "A Bizarre Day" then
+        game:GetService("TeleportService"):Teleport(2686500207, player)
+    elseif _G.gamestoteleport == "Skywars" then
+        game:GetService("TeleportService"):Teleport(855499080, player)
+    elseif _G.gamestoteleport == "Dig it" then
+        game:GetService("TeleportService"):Teleport(5344707538, player)
+    elseif _G.gamestoteleport == "Jailbreak" then
+        game:GetService("TeleportService"):Teleport(606849621, player)
+    elseif _G.gamestoteleport == "Anime Fighting Sim" then
+        game:GetService("TeleportService"):Teleport(4042427666, player)
+    elseif _G.gamestoteleport == "Flood Escape 2" then
+        game:GetService("TeleportService"):Teleport(738339342, player)
+    elseif _G.gamestoteleport == "Slime Tycoon" then
+        game:GetService("TeleportService"):Teleport(3596472165, player)
+    elseif _G.gamestoteleport == "Lumber Tycoon 2" then
+        game:GetService("TeleportService"):Teleport(13822889, player)
+    elseif _G.gamestoteleport == "Milkshake Legends" then
+        game:GetService("TeleportService"):Teleport(5454936056, player)
+    elseif _G.gamestoteleport == "CounterBlox" then
+        game:GetService("TeleportService"):Teleport(3311740703, player)
+    elseif _G.gamestoteleport == "Online Business Sim" then
+        game:GetService("TeleportService"):Teleport(5327880096, player)
+    elseif _G.gamestoteleport == "Punching Sim" then
+        game:GetService("TeleportService"):Teleport(6589192889, player)
+    elseif _G.gamestoteleport == "Redwood Prison" then
+        game:GetService("TeleportService"):Teleport(402122991, player)
+    elseif _G.gamestoteleport == "Fortress Tycoon" then
+        game:GetService("TeleportService"):Teleport(474657433, player)
+    elseif _G.gamestoteleport == "Zombie Defence" then
+        game:GetService("TeleportService"):Teleport(4711958375, player)
+    elseif _G.gamestoteleport == "Rumble Quest" then
+        game:GetService("TeleportService"):Teleport(4390380541, player)
+    elseif _G.gamestoteleport == "Ro Ghoul" then
+        game:GetService("TeleportService"):Teleport(914010731, player)
+    elseif _G.gamestoteleport == "Giant Survival" then
+        game:GetService("TeleportService"):Teleport(4003872968, player)
+    elseif _G.gamestoteleport == "Bee Swarm Simulator" then
+        game:GetService("TeleportService"):Teleport(1537690962, player)
+    elseif _G.gamestoteleport == "One Piece Prime" then
+        game:GetService("TeleportService"):Teleport(5237497216, player)
+    elseif _G.gamestoteleport == "Animal Sim" then
+        game:GetService("TeleportService"):Teleport(5712833750, player)
+    elseif _G.gamestoteleport == "Lift Legends" then
+        game:GetService("TeleportService"):Teleport(5709572883, player)
+    elseif _G.gamestoteleport == "Tapping Mania" then
+        game:GetService("TeleportService"):Teleport(5535087806, player)
+    elseif _G.gamestoteleport == "Fishing Simulator" then
+        game:GetService("TeleportService"):Teleport(2866967438, player)
+    elseif _G.gamestoteleport == "Boku No Roblox" then
+        game:GetService("TeleportService"):Teleport(1499872953, player)
+    elseif _G.gamestoteleport == "Shinobi Life 2" then
+        game:GetService("TeleportService"):Teleport(4616652839, player)
+    elseif _G.gamestoteleport == "Dragon Ball Rage" then
+        game:GetService("TeleportService"):Teleport(71315343, player)
+    elseif _G.gamestoteleport == "Blox Hunt" then
+        game:GetService("TeleportService"):Teleport(70005410, player)
+    elseif _G.gamestoteleport == "PISTOL 1V1" then
+        game:GetService("TeleportService"):Teleport(6722284015, player)
+    elseif _G.gamestoteleport == "A Universal Time" then
+        game:GetService("TeleportService"):Teleport(5130598377, player)
+    elseif _G.gamestoteleport == "Lifting Simulator" then
+        game:GetService("TeleportService"):Teleport(3652625463, player)
+    elseif _G.gamestoteleport == "World Of Magic" then
+        game:GetService("TeleportService"):Teleport(3272915504, player)
+    elseif _G.gamestoteleport == "Attack On Titan: Downfall" then
+        game:GetService("TeleportService"):Teleport(418574428, player)
+    elseif _G.gamestoteleport == "Treasure Quest" then
+        game:GetService("TeleportService"):Teleport(2960777560, player)
+    elseif _G.gamestoteleport == "Assasin" then
+        game:GetService("TeleportService"):Teleport(379614936, player)
+    elseif _G.gamestoteleport == "Destruction Simulator" then
+        game:GetService("TeleportService"):Teleport(2248408710, player)
     end
+    
 end})
 -- Supported Games
 if game.PlaceId == 2753915549 then --Blox Fruits
@@ -206,6 +307,30 @@ elseif game.PlaceId == 6299805723 then --Anime Fighters
     local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
     SectionSupportedGame:AddButton({Name =  "zer0 hub", Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Discord0000/Zer0Hub/main/MainScript.lua"))()
+    end})
+elseif game.PlaceId == 654732683 then --Car crushers 2
+    local DetectedGameTab = Window:MakeTab({Name = "Car Crushers 2", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/UmkD1gyr"))()
+    end})
+elseif game.PlaceId == 3101667897 then --Legends Of Speed
+    local DetectedGameTab = Window:MakeTab({Name = "Legends of Speed", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/aWA8FZ72"))()
+    end})
+elseif game.PlaceId == 621129760 then --KAT
+    local DetectedGameTab = Window:MakeTab({Name = "KAT", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/mememasterboi/a-lot-of-scripts/master/Output%20(6).lua"))()
+    end})
+elseif game.PlaceId == 2202352383 then --SuperPower Training Sim
+    local DetectedGameTab = Window:MakeTab({Name = "SuperPower Training Sim", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/yogurtsss/Practice-Projects-/main/SPFSRemake"))()
     end})
 end
 OrionLib:Init()

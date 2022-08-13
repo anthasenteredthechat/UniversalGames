@@ -3,15 +3,15 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Universal Games - ScriptHub / Version 1.0.3", HidePremium = true, IntroText = "Universal Games ScriptHub", IntroIcon = "rbxassetid://6031094686", Icon = "rbxassetid://6031094686", SaveConfig = true, ConfigFolder = "Games-Hub Config"})
 -----------------------------------------------------------------------------------------------------------------------------
 --Tabs
-local UFE = Window:MakeTab({Name = "Universal FE", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local Games = Window:MakeTab({Name = "Games Teleport", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local UniversalHubsGuis = Window:MakeTab({Name = "Universal", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+local UFE = Window:MakeTab({Name = "Universal FE", Icon = "rbxassetid://6031094686", PremiumOnly = false})
+local Games = Window:MakeTab({Name = "Games Teleport", Icon = "rbxassetid://6034227061", PremiumOnly = false})
+local UniversalHubsGuis = Window:MakeTab({Name = "Universal", Icon = "rbxassetid://6031734878", PremiumOnly = false})
 --Sections
 local SectionUFE = UFE:AddSection({Name = "Script:"})
 local SectionTeleport = Games:AddSection({Name = "Choose Supported Game to Teleport!"})
 local SectionUniHubGui = UniversalHubsGuis:AddSection({Name = "All Scripts Here You Can You on Any Game!"})
 --Configs and Credits
-local CreditsConfig = Window:MakeTab({Name = "Config/Credits", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+local CreditsConfig = Window:MakeTab({Name = "Credits", Icon = "rbxassetid://6034287513", PremiumOnly = false})
 local SectionCreditsConfig = CreditsConfig:AddSection({Name = "Cool People:"})
 SectionCreditsConfig:AddLabel("Owner: Dvrknvss#0688")
 SectionCreditsConfig:AddLabel("Devloper: Lay.#9994")

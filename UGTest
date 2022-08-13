@@ -1,171 +1,539 @@
 --Keep this
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Universal Games/FE ScriptHub", "DarkTheme")
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Universal Games - ScriptHub / Version 1.0.3", HidePremium = true, IntroText = "Universal Games ScriptHub", IntroIcon = "rbxassetid://6031094686", Icon = "rbxassetid://6031094686", SaveConfig = true, ConfigFolder = "Games-Hub Config"})
 -----------------------------------------------------------------------------------------------------------------------------
 --Tabs
-local UFE = Window:NewTab("Universal FE")
-local Games = Window:NewTab("Games to Teleport")
-local UniversalHubsGuis = Window:NewTab("Universal Hubs/GUIs")
+local UFE = Window:MakeTab({Name = "Universal FE", Icon = "rbxassetid://6031094686", PremiumOnly = false})
+local Games = Window:MakeTab({Name = "Games Teleport", Icon = "rbxassetid://6034227061", PremiumOnly = false})
+local UniversalHubsGuis = Window:MakeTab({Name = "Universal", Icon = "rbxassetid://6031734878", PremiumOnly = false})
 --Sections
-local SectionUFE = UFE:NewSection("Script:")
-local SectionRecommended = Games:NewSection("Teleport to a Game Non Restricted Teleport")
-local SectionTeleport = Games:NewSection("Choose Supported Game to Teleport!")
-local SectionUniHubGui = UniversalHubsGuis:NewSection("Scripts you can you on any game!")
+local SectionUFE = UFE:AddSection({Name = "Script:"})
+local SectionTeleport = Games:AddSection({Name = "Choose Supported Game to Teleport!"})
+local SectionUniHubGui = UniversalHubsGuis:AddSection({Name = "All Scripts Here You Can You on Any Game!"})
+--Configs and Credits
+local CreditsConfig = Window:MakeTab({Name = "Credits", Icon = "rbxassetid://6034287513", PremiumOnly = false})
+local SectionCreditsConfig = CreditsConfig:AddSection({Name = "Cool People:"})
+SectionCreditsConfig:AddLabel("Owner: Dvrknvss#0688")
+SectionCreditsConfig:AddLabel("Devloper: Lay.#9994")
+SectionCreditsConfig:AddLabel("Devloper: antgp#9689")
+SectionCreditsConfig:AddLabel("Special Contributor: speedy#9999")
+SectionCreditsConfig:AddButton({Name =  "Discord Link", Callback = function()
+    setclipboard("https://discord.com/invite/McWdrB4wSs")
+end})
 --Buttons
-SectionUFE:NewButton("Univesal FE ScriptHub", "Main Hub", function()
+SectionUFE:AddButton({Name = "Univesal FE ScriptHub", Callback = function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()
-end)
-SectionUFE:NewLabel("Enjoy It!")
-SectionRecommended:NewLabel("It Copies Game Link Automatically to Your")
-SectionRecommended:NewLabel("Clipboard If You Need to Join Manually")
-SectionRecommended:NewButton("Just Grass", "", function()
-    game:GetService("TeleportService"):Teleport(5100950559, player)
-    setclipboard("https://www.roblox.com/games/5100950559/Just-Grass")
-end)
-SectionRecommended:NewButton("a literal baseplate", "", function()
-    game:GetService("TeleportService"):Teleport(4483381587, player)
-    setclipboard("https://www.roblox.com/games/4483381587/a-literal-baseplate")
-end)
-SectionUniHubGui:NewButton("Fates Admin", "", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))()
-end)
-SectionUniHubGui:NewButton("Homebrew Admin", "", function()
-    loadstring(game:HttpGet(('https://raw.githubusercontent.com/mgamingpro/HomebrewAdmin/master/Main'),true))()
-end)
-SectionUniHubGui:NewButton("Owl Hub", "", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt"))()
-end)
+end})
+SectionUFE:AddLabel("Enjoy It!")
+SectionUniHubGui:AddButton({Name = "Fates Admin", Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua'))()
+end})
+SectionUniHubGui:AddButton({Name = "Homebrew Admin", Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/mgamingpro/HomebrewAdmin/master/Main'))()
+end})
+SectionUniHubGui:AddButton({Name = "Owl Hub", Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt'))()
+end})
 --Dropdowns
-SectionTeleport:NewDropdown("Select Game to Teleport", "", {"Blox Fruits", "Da Hood"}, function(Value)
+_G.gamestoteleport = "Select game to teleport"
+SectionTeleport:AddDropdown({Name = "Select Game Here", Default = "Select Game to Teleport", Options = {"A Bizarre Day","A Universal Time","Animal Sim",
+"Anime Dimensions","Anime Fighters","Arsenal","Assasin","Attack On Titan: Downfall","Bee Swarm Simulator","Blox Fruits","Blox Hunt","Boku No Roblox",
+"Break In","Brookhaven","Car Crushers 2","Counter Blox","Da Hood","Destruction Simulator","Dig It","Dragon Ball Rage","Dungeon Quest","Field Trip Z",
+"Fishing Simulator","Flood Escape 2","Fortress Tycoon","Giant Survival","IceBreaker","Jailbreak","Legends of Speed","Lift Legends","Lifting Simulator",
+"Lucky Block Battlegrounds","Lumber Tycoon 2","Mad City","Milkshake Legends","One Piece Prime","Online Business Sim","Pet Simulator X","Phantom Forces","PISTOL 1V1","Prison Life",
+"Punching Sim","Redwood Prison ","Ro Ghoul","Rumble Quest","Sharkbite","Shinobi Life 2","Skywars","Slime Tycoon","SuperPower Training Sim","Tapping Mania",
+"The Rake Reamastered","Tower of Hell","Tradelands","Treasure Quest","Viet Nam Piece","World Of Magic","Zombie Attack","Zombie Defense","Zombie Rush"}, Callback = function(Value)
     _G.gamestoteleport = Value
-end)
-SectionTeleport:NewButton("Teleport To Selected Game", "", function()
+end})
+SectionTeleport:AddButton({Name = "Teleport To Selected Game", Callback = function()
     if _G.gamestoteleport == "Select Game to Teleport" then
     elseif _G.gamestoteleport == "Blox Fruits" then
         game:GetService("TeleportService"):Teleport(2753915549, player)
     elseif _G.gamestoteleport == "Da Hood" then
         game:GetService("TeleportService"):Teleport(2788229376, player)
+    elseif _G.gamestoteleport == "Pet Simulator X"  then
+        game:GetService("TeleportService"):Teleport(6284583030, player)
+    elseif _G.gamestoteleport == "Zombie Attack" then
+        game:GetService("TeleportService"):Teleport(1240123653, player)
+    elseif _G.gamestoteleport == "Tradelands" then
+        game:GetService("TeleportService"):Teleport(198116126, player)
+    elseif _G.gamestoteleport == "Arsenal" then
+        game:GetService("TeleportService"):Teleport(286090429, player)
+    elseif _G.gamestoteleport == "Break In" then
+        game:GetService("TeleportService"):Teleport(3851622790, player)
+    elseif _G.gamestoteleport == "Viet Nam Piece" then
+        game:GetService("TeleportService"):Teleport(4587545091, player)
+    elseif _G.gamestoteleport == "Phantom Forces" then
+        game:GetService("TeleportService"):Teleport(292439477, player)
+    elseif _G.gamestoteleport == "Tower of Hell" then
+        game:GetService("TeleportService"):Teleport(1962086868, player)
+    elseif _G.gamestoteleport == "Giant Survival" then
+        game:GetService("TeleportService"):Teleport(4003872968, player)
+    elseif _G.gamestoteleport == "Field Trip Z" then
+        game:GetService("TeleportService"):Teleport(4954096313, player)
+    elseif _G.gamestoteleport == "Mad City" then
+        game:GetService("TeleportService"):Teleport(1224212277, player)
+    elseif _G.gamestoteleport == "Brookhaven" then
+        game:GetService("TeleportService"):Teleport(4924922222, player)
+    elseif _G.gamestoteleport == "Prison Life" then
+        game:GetService("TeleportService"):Teleport(155615604, player)
+    elseif _G.gamestoteleport == "Ragdoll Engine" then
+        game:GetService("TeleportService"):Teleport(5683833663, player)
+    elseif _G.gamestoteleport == "The Rake Reamastered" then
+        game:GetService("TeleportService"):Teleport(2413927524, player)
+    elseif _G.gamestoteleport == "Lucky Block Battlegrounds" then
+        game:GetService("TeleportService"):Teleport(662417684, player)
+    elseif _G.gamestoteleport == "Anime Dimensions" then
+        game:GetService("TeleportService"):Teleport(6938803436, player)
+    elseif _G.gamestoteleport == "Anime Fighters" then
+        game:GetService("TeleportService"):Teleport(6299805723, player)
+    elseif _G.gamestoteleport == "Car Crushers 2" then
+        game:GetService("TeleportService"):Teleport(654732683, player)
+    elseif _G.gamestoteleport == "Legends of Speed" then
+        game:GetService("TeleportService"):Teleport(3101667897, player)
+    elseif _G.gamestoteleport == "IceBreaker" then
+        game:GetService("TeleportService"):Teleport(139613645, player)
+    elseif _G.gamestoteleport == "Dungeon Quest" then
+        game:GetService("TeleportService"):Teleport(2414851778, player)
+    elseif _G.gamestoteleport == "SharkBite" then
+        game:GetService("TeleportService"):Teleport(734159876, player)
+    elseif _G.gamestoteleport == "Zombie Rush" then
+        game:GetService("TeleportService"):Teleport(137885680, player)
+    elseif _G.gamestoteleport == "A Bizarre Day" then
+        game:GetService("TeleportService"):Teleport(2686500207, player)
+    elseif _G.gamestoteleport == "Skywars" then
+        game:GetService("TeleportService"):Teleport(855499080, player)
+    elseif _G.gamestoteleport == "Dig it" then
+        game:GetService("TeleportService"):Teleport(5344707538, player)
+    elseif _G.gamestoteleport == "Jailbreak" then
+        game:GetService("TeleportService"):Teleport(606849621, player)
+    elseif _G.gamestoteleport == "Flood Escape 2" then
+        game:GetService("TeleportService"):Teleport(738339342, player)
+    elseif _G.gamestoteleport == "Slime Tycoon" then
+        game:GetService("TeleportService"):Teleport(3596472165, player)
+    elseif _G.gamestoteleport == "Lumber Tycoon 2" then
+        game:GetService("TeleportService"):Teleport(13822889, player)
+    elseif _G.gamestoteleport == "Milkshake Legends" then
+        game:GetService("TeleportService"):Teleport(5454936056, player)
+    elseif _G.gamestoteleport == "CounterBlox" then
+        game:GetService("TeleportService"):Teleport(3311740703, player)
+    elseif _G.gamestoteleport == "Online Business Sim" then
+        game:GetService("TeleportService"):Teleport(5327880096, player)
+    elseif _G.gamestoteleport == "Punching Sim" then
+        game:GetService("TeleportService"):Teleport(6589192889, player)
+    elseif _G.gamestoteleport == "Redwood Prison" then
+        game:GetService("TeleportService"):Teleport(402122991, player)
+    elseif _G.gamestoteleport == "Fortress Tycoon" then
+        game:GetService("TeleportService"):Teleport(474657433, player)
+    elseif _G.gamestoteleport == "Zombie Defence" then
+        game:GetService("TeleportService"):Teleport(4711958375, player)
+    elseif _G.gamestoteleport == "Rumble Quest" then
+        game:GetService("TeleportService"):Teleport(4390380541, player)
+    elseif _G.gamestoteleport == "Ro Ghoul" then
+        game:GetService("TeleportService"):Teleport(914010731, player)
+    elseif _G.gamestoteleport == "Bee Swarm Simulator" then
+        game:GetService("TeleportService"):Teleport(1537690962, player)
+    elseif _G.gamestoteleport == "One Piece Prime" then
+        game:GetService("TeleportService"):Teleport(5237497216, player)
+    elseif _G.gamestoteleport == "Animal Sim" then
+        game:GetService("TeleportService"):Teleport(5712833750, player)
+    elseif _G.gamestoteleport == "Lift Legends" then
+        game:GetService("TeleportService"):Teleport(5709572883, player)
+    elseif _G.gamestoteleport == "Tapping Mania" then
+        game:GetService("TeleportService"):Teleport(5535087806, player)
+    elseif _G.gamestoteleport == "Fishing Simulator" then
+        game:GetService("TeleportService"):Teleport(2866967438, player)
+    elseif _G.gamestoteleport == "Boku No Roblox" then
+        game:GetService("TeleportService"):Teleport(1499872953, player)
+    elseif _G.gamestoteleport == "Shinobi Life 2" then
+        game:GetService("TeleportService"):Teleport(4616652839, player)
+    elseif _G.gamestoteleport == "Dragon Ball Rage" then
+        game:GetService("TeleportService"):Teleport(71315343, player)
+    elseif _G.gamestoteleport == "Blox Hunt" then
+        game:GetService("TeleportService"):Teleport(70005410, player)
+    elseif _G.gamestoteleport == "PISTOL 1V1" then
+        game:GetService("TeleportService"):Teleport(6722284015, player)
+    elseif _G.gamestoteleport == "A Universal Time" then
+        game:GetService("TeleportService"):Teleport(5130598377, player)
+    elseif _G.gamestoteleport == "Lifting Simulator" then
+        game:GetService("TeleportService"):Teleport(3652625463, player)
+    elseif _G.gamestoteleport == "World Of Magic" then
+        game:GetService("TeleportService"):Teleport(3272915504, player)
+    elseif _G.gamestoteleport == "Attack On Titan: Downfall" then
+        game:GetService("TeleportService"):Teleport(418574428, player)
+    elseif _G.gamestoteleport == "Treasure Quest" then
+        game:GetService("TeleportService"):Teleport(2960777560, player)
+    elseif _G.gamestoteleport == "Assasin" then
+        game:GetService("TeleportService"):Teleport(379614936, player)
+    elseif _G.gamestoteleport == "Destruction Simulator" then
+        game:GetService("TeleportService"):Teleport(2248408710, player)
     end
-end)
+    
+end})
 -- Supported Games
 if game.PlaceId == 2753915549 then --Blox Fruits
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Blox Fruits", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 2788229376 then --Da Hood
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("Arctic", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Da Hood", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Arctic", Callback = function()
         loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/PolarWasHere/Arctic/main/Arctic"))()
-    end)
+    end})
 elseif game.PlaceId == 6284583030 then --Pet Simulator X
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Pet Simulator X", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 1240123653 then -- Zombie Attack
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Zombie Attack", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 198116126 then --Tradelands
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Tradelands", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 286090429 then --Arsenal
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Arsenal", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 3851622790 then --Break In
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Break In", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 4587545091 then --Viet Nam Piece
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Viet Nam Piece", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 292439477 then --Phantom Forces
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("Strawhook Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Phantom Forces", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Strawhook Hub", Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidMasterX/strawhook/main/script.lua", true))()
-    end)
-    SectionSupportedGame:NewButton("Unlock All", "", function()
+    end})
+    SectionSupportedGame:AddButton({Name =  "Unlock All", Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidMasterX/Releases/main/PF_UnlockAll.lua"))();
-    end)
+    end})
 elseif game.PlaceId == 1962086868 then --Tower of Hell
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Tower of Hell", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 4003872968 then --Giant Survival
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Giant Survival", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 4954096313 then --Field Trip Z
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Field Trip Z", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 1224212277 then --Mad City
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("HoHo Hub", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Mad City", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "HoHo Hub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
-    end)
+    end})
 elseif game.PlaceId == 4924922222 then --Brookheaven
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("Brookheaven (Update Name)", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Brookheaven", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "NewIceHub", Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()
-    end)
+    end})
 elseif game.PlaceId == 155615604 then --Prison Life
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("Prison Life (Update Name)", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Prison Life", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Prison Life Admin", Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/DJQ3Ph9i"))()
-    end)
-elseif game.PlaceId == 5683833663 then --Radgol Engine
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("Radgol Engine (Update Name)", "", function()
+    end})
+elseif game.PlaceId == 5683833663 then --Radgoll Engine
+    local DetectedGameTab = Window:MakeTab({Name = "Radgol Engine", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "CryptonicHub", Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/martinelcrac/cryptonichub/main/Ragdollengine.lua'))()
-    end)
+    end})
 elseif game.PlaceId == 2413927524 then --The Rake Reamastered
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("The Rake Reamastered (Update Name)", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "The Rake Reamastered", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "RealZzHub V2", Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/RealZzHub/MainV2/main/Main.lua"))()
-    end)
+    end})
 elseif game.PlaceId == 662417684 then --Lucky Block Battlegrounds
-    local DetectedGameTab = Window:NewTab("Detected Game")
-    local SectionSupportedGame = DetectedGameTab:NewSection("Detected Supported Game!")
-    SectionSupportedGame:NewButton("Lucky Block Battlegrounds (Update Name)", "", function()
+    local DetectedGameTab = Window:MakeTab({Name = "Lucky Block Battlegrounds", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "LuckyBlock Hub", Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/09NZMs4E"))()
-    end)
+    end})
+elseif game.PlaceId == 6938803436 then --Anime Dimensions
+    local DetectedGameTab = Window:MakeTab({Name = "Anime Dimensions", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "speedy's hub", Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/speedyx5/scripts/master/scriptsrc"))()
+    end})
+elseif game.PlaceId == 6299805723 then --Anime Fighters
+    local DetectedGameTab = Window:MakeTab({Name = "Anime Fighters", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "zer0 hub", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Discord0000/Zer0Hub/main/MainScript.lua"))()
+    end})
+elseif game.PlaceId == 654732683 then --Car crushers 2
+    local DetectedGameTab = Window:MakeTab({Name = "Car Crushers 2", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Car Crushers 2 GUI", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/UmkD1gyr"))()
+    end})
+elseif game.PlaceId == 3101667897 then --Legends Of Speed
+
+    local DetectedGameTab = Window:MakeTab({Name = "Legends of Speed", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Legends of Speed GUI By Secret", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/aWA8FZ72"))()
+    end})
+elseif game.PlaceId == 139613645 then --IceBreaker
+    local DetectedGameTab = Window:MakeTab({Name = "IceBreaker", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Ice Breaker GUI", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/uAMRxU2M"))()
+    end})
+elseif game.PlaceId == 2414851778 then --Dungeon Quest
+    local DetectedGameTab = Window:MakeTab({Name = "Dungeon Quest", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/F5vSFHZt"))()
+    end})
+elseif game.PlaceId == 734159876 then --SharkBite
+    local DetectedGameTab = Window:MakeTab({Name = "SharkBite", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/1vQxrjQT"))()
+    end})
+elseif game.PlaceId == 137885680 then --Zombie Rush
+    local DetectedGameTab = Window:MakeTab({Name = "Zombie Rush", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/cHmscXYK"))()
+    end})
+elseif game.PlaceId == 2686500207 then --A Bizarre Day
+    local DetectedGameTab = Window:MakeTab({Name = "A Bizarre Day", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Moddi69/Script/master/ABizarreHackRe"))()
+    end})
+elseif game.PlaceId == 855499080 then --Skywars
+    local DetectedGameTab = Window:MakeTab({Name = "Skywars", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/RF4Mr1i7"))()
+    end})
+elseif game.PlaceId == 5344707538 then --Dig it
+    local DetectedGameTab = Window:MakeTab({Name = "Dig it", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "(Update Name pls)", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/ZNA5nYQM"))()
+    end})
+elseif game.PlaceId == 606849621 then --Jailbreak
+    local DetectedGameTab = Window:MakeTab({Name = "Jailbreak", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "JailedHax", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/JailedMist/JailedHax/master/Main.lua"))()
+    end})
+elseif game.PlaceId == 738339342 then --Flood Escape 2
+    local DetectedGameTab = Window:MakeTab({Name = "Flood Escape 2", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/fCjn1E9T"))()
+    end})
+elseif game.PlaceId == 3596472165 then --Slime Tycoon
+    local DetectedGameTab = Window:MakeTab({Name = "Slime Tycoon", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/radjahfromdiscord/slimetycoon/master/gui"))()
+    end})
+elseif game.PlaceId == 13822889 then --Lumber Tycoon 2
+    local DetectedGameTab = Window:MakeTab({Name = "Lumber Tycoon 2", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/ek7sR2VR"))()
+    end})
+elseif game.PlaceId == 5454936056 then --Milkshake Legends
+    local DetectedGameTab = Window:MakeTab({Name = "Milkshake Legends", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/tG5sricY"))()
+    end})
+elseif game.PlaceId == 3311740703 then --CounterBlox
+    local DetectedGameTab = Window:MakeTab({Name = "CounterBlox", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/qfadYUtt"))()
+    end})
+elseif game.PlaceId == 5327880096 then --Online Business Sim
+    local DetectedGameTab = Window:MakeTab({Name = "Online Business Sim", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/NDTTzz4L"))()
+    end})
+elseif game.PlaceId == 6589192889 then --Punching Sim
+    local DetectedGameTab = Window:MakeTab({Name = "Punching Sim", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("http://gameovers.net/Scripts/Free/push_simulator/main.lua"))()
+    end})
+elseif game.PlaceId == 402122991 then --Redwood Prison
+    local DetectedGameTab = Window:MakeTab({Name = "Redwood Prison", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/p1UQV7Kr"))()
+    end})
+elseif game.PlaceId == 474657433 then --Fortress Tycoon
+    local DetectedGameTab = Window:MakeTab({Name = "Fortress Tycoon", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/v3rmscripts/scripts-repo/master/scripts/LoadstringMnvnXcE3raYWpaste"))()
+    end})
+elseif game.PlaceId == 4711958375 then --Zombie Defence
+    local DetectedGameTab = Window:MakeTab({Name = "Zombie Defence", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/Av4wsQFu"))()
+    end})
+elseif game.PlaceId == 4390380541 then --Rumble Quest
+    local DetectedGameTab = Window:MakeTab({Name = "Rumble Quest", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/5KtmRcCe"))()
+    end})
+elseif game.PlaceId == 914010731 then --Ro Ghoul
+    local DetectedGameTab = Window:MakeTab({Name = "Ro Ghoul", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/z4gs/scripts/master/Ro-Ghoul%20Auto%20Farm.lua"))()
+    end})
+elseif game.PlaceId == 1537690962 then --Bee Swarm Simulator
+    local DetectedGameTab = Window:MakeTab({Name = "Bee Swarm Simulator", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/uGujrkAf"))()
+    end})
+elseif game.PlaceId == 5237497216 then --One Piece Prime
+    local DetectedGameTab = Window:MakeTab({Name = "One Piece Prime", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AikaV3rm/Scripts/master/One%20Piece%20Prime"))()
+    end})
+elseif game.PlaceId == 5712833750 then --Animal Sim
+    local DetectedGameTab = Window:MakeTab({Name = "Animal Sim", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/CrKCLcYc"))()
+    end})
+elseif game.PlaceId == 5709572883 then --Lift Legends
+    local DetectedGameTab = Window:MakeTab({Name = "", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/bjkefe23/lift-legends-simulator-Update-Gui/main/Lift%20Legends%20Update%20Gui"))()
+    end})
+elseif game.PlaceId == 5535087806 then --Tapping Mania
+    local DetectedGameTab = Window:MakeTab({Name = "Tapping Mania", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/7CQxsEVu"))()
+    end})
+elseif game.PlaceId == 2866967438 then --Fishing Simulator
+    local DetectedGameTab = Window:MakeTab({Name = "Fishing Simulator", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/5r2kwfzn"))()
+    end})
+elseif game.PlaceId == 1499872953 then --Boku No Roblox
+    local DetectedGameTab = Window:MakeTab({Name = "Boku No Roblox", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/R1vA1jee"))()
+    end})
+elseif game.PlaceId == 4616652839 then --Shinobi Life 2
+    local DetectedGameTab = Window:MakeTab({Name = "Shinobi Life 2", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/Kc7XZKbC"))()
+    end})
+elseif game.PlaceId == 71315343 then --Dragon Ball Rage
+    local DetectedGameTab = Window:MakeTab({Name = "Dragon Ball Rage", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/TZUSvtmd"))()
+    end})
+elseif game.PlaceId == 70005410 then --Blox Hunt
+    local DetectedGameTab = Window:MakeTab({Name = "Blox Hunt", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/ujBkfNam"))()
+    end})
+elseif game.PlaceId == 6722284015 then --PISTOL 1V1
+    local DetectedGameTab = Window:MakeTab({Name = "Pistol 1v1", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ascaxz/ReleaseScripts/main/Pistol1v1SilentAim.lua"))()
+    end})
+elseif game.PlaceId == 5130598377 then --A Universal Time
+    local DetectedGameTab = Window:MakeTab({Name = "A Universal Time", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/zt1XYrqJ"))()
+    end})
+elseif game.PlaceId == 3652625463 then --Lifting Simulator
+    local DetectedGameTab = Window:MakeTab({Name = "Lifting Simulator", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/vPFVRR2P"))()
+    end})
+elseif game.PlaceId == 3272915504 then --World Of Magic
+    local DetectedGameTab = Window:MakeTab({Name = "World Of Magic", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/d0itCfPg"))()
+    end})
+elseif game.PlaceId == 418574428 then --Downfall
+    local DetectedGameTab = Window:MakeTab({Name = "Downfall", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EuHellscytheLua/AOTV0.01/master/EusAOTUi.lua"))()
+    end})
+elseif game.PlaceId == 2960777560 then --Treasure Quest
+    local DetectedGameTab = Window:MakeTab({Name = "Treasure Quest", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/PhtTyT74"))()
+    end})
+elseif game.PlaceId == 379614936 then --Assasin
+    local DetectedGameTab = Window:MakeTab({Name = "Assasin", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/bockatta/Atta/main/2"))()
+    end})
+elseif game.PlaceId == 2248408710 then --Destruction Simulator
+    local DetectedGameTab = Window:MakeTab({Name = "Destruction Simulator", Icon = "rbxassetid://4483345998", PremiumOnly = false})
+    local SectionSupportedGame = DetectedGameTab:AddSection({Name = "Detected Supported Game!"})
+    SectionSupportedGame:AddButton({Name =  "Update name pls", Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AquaModz/DestructionSIMModded/main/DestructionSimAqua.lua"))()
+    end})
 end
---Configs
-local CreditsConfig = Window:NewTab("Credits / Config")
-local SectionCreditsConfig = CreditsConfig:NewSection("Credits/Config")
-SectionCreditsConfig:NewLabel("Owner: Dvrknvss#0688")
-SectionCreditsConfig:NewLabel("Devloper: Lay.#9994")
-SectionCreditsConfig:NewLabel("Devloper: antgp#9689")
-SectionCreditsConfig:NewButton("Discord Link", "https://discord.com/invite/McWdrB4wSs", function()
-    setclipboard("https://discord.com/invite/McWdrB4wSs")
-end)
+OrionLib:Init()
